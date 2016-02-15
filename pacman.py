@@ -106,9 +106,39 @@ class Pacman(GameObject):
         self.set_coord(self.x, self.y)
         
         
-  class Map:
+class Wall(GameObject):
+    def __init__(self, x, y, tile_size, map_size):
+        GameObject.__init__(self, './resources/wall.png', x, y, tile_size, map_size)
+        self.direction = 0
+        self.velocity = 4.0 / 10.0
+
+    def game_tick(self):
+        super(Pacman, self).game_tick()
+        if self.direction == 1:
+            self.x += self.velocity
+            if self.x >= self.map_size-1:
+                self.x = self.map_size-1
+        elif self.direction == 2:
+            self.y += self.velocity
+            if self.y >= self.map_size-1:
+                self.y = self.map_size-1
+        elif self.direction == 3:
+            self.x -= self.velocity
+            if self.x <= 0:
+                self.x = 0
+        elif self.direction == 4:
+            self.y -= self.velocity
+            if self.y <= 0:
+                self.y = 0
+
+        self.set_coord(self.x, self.y)
+
+
+class Map:
         def __init__(self, w, h):
-                self.map = [ [list()]*x for i in range(y) ]
+            GameObject.__init__(self, './resources/wall_1.png', x, y, tile_size, map_size)
+            mapfile=open('map.txt','r')
+            self.map = [ [mapfile.read()] for i in range(x) for j in range(y) ]
 
         def get(self, x, y):
                 return self.map[x][y]
@@ -122,7 +152,7 @@ class Pacman(GameObject):
                         return true
                 return false
 
-        def drawAll(self):      
+        def drawAll(self):
 
 
 def process_events(events, packman):
