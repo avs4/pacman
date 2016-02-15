@@ -104,6 +104,25 @@ class Pacman(GameObject):
                 self.y = 0
 
         self.set_coord(self.x, self.y)
+        
+        
+  class Map:
+        def __init__(self, w, h):
+                self.map = [ [list()]*x for i in range(y) ]
+
+        def get(self, x, y):
+                return self.map[x][y]
+
+        def moveTo(self, obj, new_x, new_y):
+                point = self.map[obj.x][obj.y]
+                if obj in point:
+                        point.remove(obj)
+                        self.map[new_x][new_y].add(obj)
+                        obj.set_ccord(x,y)
+                        return true
+                return false
+
+        def drawAll(self):      
 
 
 def process_events(events, packman):
