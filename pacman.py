@@ -88,18 +88,22 @@ class Pacman(GameObject):
         super(Pacman, self).game_tick()
         if self.direction == 1:
             self.x += self.velocity
+            pygame.transform.rotate(self.image, 0)
             if self.x >= self.map_size-1:
                 self.x = self.map_size-1
         elif self.direction == 2:
             self.y += self.velocity
+            pygame.transform.rotate(self.image, 90)
             if self.y >= self.map_size-1:
                 self.y = self.map_size-1
         elif self.direction == 3:
             self.x -= self.velocity
+            pygame.transform.rotate(self.image, 180)
             if self.x <= 0:
                 self.x = 0
         elif self.direction == 4:
             self.y -= self.velocity
+            pygame.transform.rotate(self.image, 270)
             if self.y <= 0:
                 self.y = 0
 
