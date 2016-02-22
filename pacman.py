@@ -110,26 +110,9 @@ class Wall(GameObject):
     def __init__(self, x, y, tile_size, map_size):
         GameObject.__init__(self, './resources/wall.png', x, y, tile_size, map_size)
         self.direction = 0
-        self.velocity = 4.0 / 10.0
+        self.velocity = 0
 
-    def game_tick(self):
-        super(Pacman, self).game_tick()
-        if self.direction == 1:
-            self.x += self.velocity
-            if self.x >= self.map_size-1:
-                self.x = self.map_size-1
-        elif self.direction == 2:
-            self.y += self.velocity
-            if self.y >= self.map_size-1:
-                self.y = self.map_size-1
-        elif self.direction == 3:
-            self.x -= self.velocity
-            if self.x <= 0:
-                self.x = 0
-        elif self.direction == 4:
-            self.y -= self.velocity
-            if self.y <= 0:
-                self.y = 0
+
 
         self.set_coord(self.x, self.y)
 
