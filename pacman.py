@@ -113,22 +113,30 @@ class Pacman(GameObject):
 class Wall(GameObject):
     def __init__(self, x, y, tile_size, map_size):
         GameObject.__init__(self, './resources/wall.png', x, y, tile_size, map_size)
-        self.direction = 0
-        self.velocity = 0
-
-
 
         self.set_coord(self.x, self.y)
 
+class Wall_des(Wall):
+    def __init__(self, x, y, tile_size, map_size):
+        GameObject.__init__(self, './resources/wall.png', x, y, tile_size, map_size)
+    
+class Wall_unb(Wall):    
 
 class Map:
         def __init__(self, w, h):
             GameObject.__init__(self, './resources/wall_1.png', x, y, tile_size, map_size)
             mapfile=open('map.txt','r')
-            self.map = [ [mapfile.read()] for i in range(x) for j in range(y) ]
-
-        def get(self, x, y):
-                return self.map[x][y]
+            for x in range(map_size):
+                for y in range(map_size):
+                    self.map[x][y]=mapfile.read()
+        
+        if self.map[x][y]=W:
+            Wall_des.__init__(self, x, y, tile_size, map_size)
+        if self.map[x][y]=V:
+            Wall_unb.__init__(self, x, y, tile_size, map_size)
+            
+        {def get(self, x, y):
+                return self.map[x][y]}
 
         def moveTo(self, obj, new_x, new_y):
                 point = self.map[obj.x][obj.y]
